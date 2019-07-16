@@ -5,6 +5,9 @@
 #	Copyright (c) 2013 Gordon Henderson
 #################################################################################
 
+DESTDIR?=/usr
+PREFIX?=/local
+
 ifneq ($V,1)
 Q ?= @
 endif
@@ -12,10 +15,10 @@ endif
 #DEBUG	= -g -O0
 DEBUG	= -O3
 CC	= gcc
-INCLUDE	= -I/usr/local/include
-CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
+INCLUDE	= -I${DESTDIR}${PREFIXDIR}/include
+CFLAGS	+= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
 
-LDFLAGS	= -L/usr/local/lib
+LDFLAGS	= -L$(DESTDIR)$(PREFIX)/lib
 LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
 
 # Should not alter anything below this line

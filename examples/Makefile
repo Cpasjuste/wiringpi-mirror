@@ -22,16 +22,19 @@
 #    along with wiringPi.  If not, see <http://www.gnu.org/licenses/>.
 #################################################################################
 
+DESTDIR?=/usr
+PREFIX?=/local
+
 ifneq ($V,1)
 Q ?= @
 endif
 
 #DEBUG	= -g -O0
 DEBUG	= -O3
-INCLUDE	= -I/usr/local/include
-CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
+INCLUDE	= -I$(DESTDIR)$(PREFIX)/include
+CFLAGS	+= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
 
-LDFLAGS	= -L/usr/local/lib
+LDFLAGS	= -L$(DESTDIR)$(PREFIX)/lib
 LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm -lcrypt -lrt
 
 # Should not alter anything below this line
